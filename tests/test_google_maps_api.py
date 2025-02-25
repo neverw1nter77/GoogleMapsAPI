@@ -16,7 +16,7 @@ class TestCreatePlace:
         Checking.check_status_code(result_post, 200)
         Checking.check_json_token(result_post, ["status", "place_id", "scope", "reference", "id"])
         Checking.check_json_value(result_post, "status", "OK")
-        print("✅ Place created successfully!")
+        print("Place created successfully!")
 
         # Get created place
         print("\n[STEP 2] Retrieving created place...")
@@ -25,7 +25,7 @@ class TestCreatePlace:
         Checking.check_json_token(result_get,
             ["location", "accuracy", "name", "phone_number", "address", "types", "website", "language"])
         Checking.check_json_value(result_get, "address", "29, side layout, cohen 09")
-        print("✅ Place retrieved successfully!")
+        print("Place retrieved successfully!")
 
         # Update place
         print("\n[STEP 3] Updating place address...")
@@ -33,14 +33,14 @@ class TestCreatePlace:
         Checking.check_status_code(result_put, 200)
         Checking.check_json_token(result_put, ["msg"])
         Checking.check_json_value(result_put, "msg", "Address successfully updated")
-        print("✅ Place updated successfully!")
+        print("Place updated successfully!")
 
         # Get updated place
         print("\n[STEP 4] Verifying updated address...")
         result_get = GoogleMapsAPI.get_new_place(place_id)
         Checking.check_status_code(result_get, 200)
         Checking.check_json_value(result_get, "address", "100 Lenina street, RU")
-        print("✅ Address updated successfully!")
+        print("Address updated successfully!")
 
         # Delete place
         print("\n[STEP 5] Deleting place...")
@@ -48,7 +48,7 @@ class TestCreatePlace:
         Checking.check_status_code(result_delete, 200)
         Checking.check_json_token(result_delete, ["status"])
         Checking.check_json_value(result_delete, "status", "OK")
-        print("✅ Place deleted successfully!")
+        print("Place deleted successfully!")
 
         # Verify deletion
         print("\n[STEP 6] Confirming place deletion...")
@@ -56,6 +56,6 @@ class TestCreatePlace:
         Checking.check_status_code(result_get, 404)
         Checking.check_json_token(result_get, ["msg"])
         Checking.check_json_search_word_in_value(result_get, "msg", "operation failed")
-        print("✅ Deletion confirmed!")
+        print("Deletion confirmed!")
 
         print("\n=== Google Maps API Test Completed Successfully ===")
